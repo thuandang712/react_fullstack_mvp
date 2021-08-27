@@ -1,11 +1,11 @@
 import React from 'react'
 import PostItem from './PostItem'
 
-const Posts = ({posts}) => {
+const Posts = ({posts, getSinglePostItem}) => {
     return (
-        <div id={'posts'}>
+        <div className='post-container'>
             {posts.map( (post, i) => (
-                <PostItem key={i} post={post} />
+                <PostItem key={i} post={post} getSinglePostItem={getSinglePostItem}/>
             ))}
         </div>
     )

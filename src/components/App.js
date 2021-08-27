@@ -6,37 +6,55 @@ import Header from './Header'
 import Posts from './Posts'
 import RecentPosts from './RecentPosts'
 import Loading from './Loading'
+import SinglePostItem from './SinglePostItem'
 
 class App extends React.Component {
   state = {
     loading: false,
-    posts: []
+    posts: [],
+    singlePostItem: null
   }
   
   async componentDidMount() {
     this.setState({loading: true})
     const res = await axios('http://localhost:4000/api/users')
     this.setState({loading: false, posts: res.data})
-    console.log(this.state.posts)
+  }
+
+
+  async getSinglePostItem(id) {
+    this.setState({loading: true})
+    const res = await axios(`http://localhost:4000/api/users/${id}`)
+    this.setState({singlePostItem: res.data})
+    this.setState({loading: false})
+  }
+
+  goHome() {
+    this.setState({singlePostItem: null})
+    this.setState({loading: false})
   }
 
   render() {
+    const {loading, posts, singlePostItem} = this.state
 
-    const {loading, posts} = this.state
-
-    if (loading) {
+    if (singlePostItem) {
+      return <SinglePostItem singlePostItem={singlePostItem} goHome={this.goHome.bind(this)}/>
+    }
+    else if (loading) {
       return <Loading />
     } else {
       return (
         <div className="App">
-          <Header />
+          <Header goHome={this.goHome.bind(this)}/>
           <RecentPosts />
           <CreatePost />
-          <Posts posts={posts} />
+          <Posts posts={posts} getSinglePostItem={this.getSinglePostItem.bind(this)} />
         </div>
       );
     }
   }
+
+
 }
 
 export default App;

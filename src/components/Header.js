@@ -1,8 +1,14 @@
 import React from 'react'
 
-const Header = () => {
+const Header = ({goHome}) => {
+    const handleHome = () => {
+        goHome()
+    }
+
     return (
-        <button className='header-btn'>Home</button>
+        <div className='menu-container'>
+            <div className='home' onClick={handleHome} >Home</div>
+        </div>
     )
 }
 
