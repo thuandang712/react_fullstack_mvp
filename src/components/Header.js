@@ -7,7 +7,7 @@ const Header = ({goHome}) => {
 
     return (
         <div className='menu-container'>
-            <div className='home' onClick={handleHome} >Home</div>
+            <div className='home' onClick={handleHome}>Home</div>
         </div>
     )
 }

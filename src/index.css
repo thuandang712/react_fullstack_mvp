@@ -20,7 +20,9 @@
     font-size: 1.5em;
     border: 1px solid red;
 }
-
+ .home:hover, .user-name:hover {
+   cursor: pointer;
+ }
 
 .header-container {
     /* background-color: #f8edeb; */
