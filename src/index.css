@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap'); */
 
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'STIX Two Text', serif;
-}
+} */
 
 .menu-container {
     color: rgb(66, 66, 66);
@@ -47,26 +47,28 @@
     padding: .5em;
 }
 
-.post-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 60%;
-  /* height: 100px; */
+.ui.grid {
+  width: 80%;
   margin: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
-.post-item {
+.ui.grid > .row > .column {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+/* .post-item {
   width: 300px;
   height: 100px;
-  /* display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap; */
   margin: 1em;
   border: 1px solid black;
-}
+}  */
 
+/* .ui.teal.button:focus,
+.ui.teal.buttons .button:focus {
+  background-color: #00b5ad;
+} */
 
 
 .single-post-item {
