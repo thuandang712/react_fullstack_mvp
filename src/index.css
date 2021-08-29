@@ -87,7 +87,9 @@
 
 #post-input {
   width: 700px;
-  height: 45px
+  height: 45px;
+  border: none;
+  box-shadow: 0 0 2px 1px #d4d4d5,0 0 0 1px #d4d4d5;
 }
 
 
