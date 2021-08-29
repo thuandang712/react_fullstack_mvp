@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Header = ({goHome}) => {
+    
     const handleHome = () => {
         goHome()
     }

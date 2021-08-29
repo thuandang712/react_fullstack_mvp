@@ -1,5 +1,7 @@
 import React from 'react'
-import { Image, Button, Card, Icon, Label } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
+import LikeButton from './LikeButton'
+import DeleteButton from './DeleteButton'
 
 const PostItem = ({post: {user_id, user_name, post_content, like_count}, getSinglePostItem}) => {
 
@@ -8,32 +10,15 @@ const PostItem = ({post: {user_id, user_name, post_content, like_count}, getSing
     }
 
     return (
-        // <div className='post-item' >
-        //     <h2 className='user-name' id={post.user_id} onClick={handleGetPost}>{post.user_name}</h2>
-        //     <p className='post-content'>{post.post_content}</p>
-        //     <button className='like-button'>{post.like_count}</button>
-        // </div>
 
         <Card>
             <Card.Content>
-                <Image
-                    floated='right'
-                    size='mini'
-                    src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
-                />
-                <Card.Header>{user_name}</Card.Header>
-                <Card.Description>{post_content}</Card.Description>
+                <Card.Header className='user-name' id={user_id} onClick={handleGetPost}>{user_name}</Card.Header>
+                <Card.Description className='post-content'>{post_content}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-                <Button as='div' labelPosition='right'>
-                    <Button color='teal' basic>
-                        <Icon name='heart' />
-                        Like
-                    </Button>
-                <Label basic color='teal' pointing='left'>
-                    {like_count}
-                </Label>
-                </Button>
+                <LikeButton like_count={like_count}/>
+                <DeleteButton />
             </Card.Content>
         </Card>
     )

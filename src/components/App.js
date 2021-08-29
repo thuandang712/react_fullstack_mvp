@@ -1,10 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
-import CreatePost from './CreatePost'
 import Header from './Header'
 import Posts from './Posts'
-import RecentPosts from './RecentPosts'
 import Loading from './Loading'
 import SinglePostItem from './SinglePostItem'
 
@@ -12,7 +10,8 @@ class App extends React.Component {
   state = {
     loading: false,
     posts: [],
-    singlePostItem: null
+    singlePostItem: null,
+    currentLike: null
   }
   
   async componentDidMount() {
@@ -46,8 +45,6 @@ class App extends React.Component {
       return (
         <div className="App">
           <Header goHome={this.goHome.bind(this)}/>
-          <RecentPosts />
-          <CreatePost />
           <Posts posts={posts} getSinglePostItem={this.getSinglePostItem.bind(this)} />
         </div>
       );

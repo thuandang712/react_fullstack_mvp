@@ -1,15 +1,25 @@
 import React from 'react'
 import Header from './Header'
+import { Button, Card } from 'semantic-ui-react'
 
 const SinglePostItem = ({singlePostItem, goHome}) => {
 
     return (
-        <div className='single-post-item'>
+        <div>
             <Header goHome={goHome}/>
-            <h2>Username: {singlePostItem[0].user_name}</h2>
-            <p>Content: {singlePostItem[0].post_content}</p>
-            <button>{singlePostItem[0].like_count}</button>
+            <Card>
+                <Card.Content>
+                    <Card.Header>{singlePostItem[0].user_name}</Card.Header>
+                    <Card.Description>{singlePostItem[0].post_content}</Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                    <Button color='teal' basic content='' icon='heart'
+                    label={{ basic: true, color: 'teal', pointing: 'left', content: singlePostItem[0].like_count }}
+                    />
+                </Card.Content>
+            </Card>
         </div>
+
     )
 }
 
