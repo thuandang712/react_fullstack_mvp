@@ -27,7 +27,11 @@
 
  .home:hover, .user:hover, .user-name:hover {
    cursor: pointer;
- }
+  }
+  
+  .home:hover, .user:hover{
+    background-color: #e7e7e7;
+  }
 
 .header-container {
     /* background-color: #f8edeb; */
