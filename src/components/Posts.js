@@ -1,18 +1,20 @@
 import React from 'react'
 import PostItem from './PostItem'
-import CreatePost from './CreatePost'
+import PostForm from './PostForm'
 import {Grid} from 'semantic-ui-react'
 
-const Posts = ({posts, getSinglePostItem}) => {
+const Posts = ({posts, getSinglePostItem, userInputText, recordUserInput, submitUserInput}) => {
     
     return (
         <Grid columns={3} className='post-container'>
             <Grid.Row className='title'>
                 <h1>Recent Posts</h1>
             </Grid.Row>
+
             <Grid.Row>
-                <CreatePost/>
+                <PostForm userInputText={userInputText} recordUserInput={recordUserInput} submitUserInput={submitUserInput}/>
             </Grid.Row>
+
             <Grid.Row>
                 {posts.map( post => (
                     <Grid.Column key={post.user_id}>
@@ -20,6 +22,7 @@ const Posts = ({posts, getSinglePostItem}) => {
                     </Grid.Column>
                 ))}
             </Grid.Row>
+
         </Grid>
     )
 }
