@@ -58,6 +58,16 @@ class App extends React.Component {
   /*************************************** ADD NEW POST ******************************************/
 
 
+  /*************************************** DELETE POST ******************************************/
+  async deletePost(id) {
+    this.setState({loading: true})
+    await axios.delete(`http://localhost:4000/api/users/${id}`)
+    const res = await axios.get('http://localhost:4000/api/users')
+    this.setState({posts: res.data})
+    this.setState({loading: false})
+  }
+  /*************************************** DELETE POST ******************************************/
+
   render() {
     const {loading, posts, singlePostItem, userInputText} = this.state
 
@@ -74,7 +84,8 @@ class App extends React.Component {
           getSinglePostItem={this.getSinglePostItem.bind(this)}
           userInputText={userInputText}
           recordUserInput={this.recordUserInput.bind(this)}
-          submitUserInput={this.submitUserInput.bind(this)}/>
+          submitUserInput={this.submitUserInput.bind(this)}
+          deletePost={this.deletePost.bind(this)}/>
         </div>
       );
     }

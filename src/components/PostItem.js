@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react'
 import LikeButton from './LikeButton'
 import DeleteButton from './DeleteButton'
 
-const PostItem = ({post: {user_id, user_name, post_content, like_count}, getSinglePostItem}) => {
+const PostItem = ({post: {user_id, user_name, post_content, like_count}, getSinglePostItem, deletePost}) => {
 
     const handleGetPost = (e) => {
         getSinglePostItem(e.target.id)
@@ -18,7 +18,7 @@ const PostItem = ({post: {user_id, user_name, post_content, like_count}, getSing
             </Card.Content>
             <Card.Content extra>
                 <LikeButton like_count={like_count}/>
-                <DeleteButton />
+                <DeleteButton user_id={user_id} deletePost={deletePost}/>
             </Card.Content>
         </Card>
     )

@@ -1,16 +1,18 @@
 import React from 'react'
 
-import {Button} from 'semantic-ui-react'
+const DeleteButton = ({user_id, deletePost}) => {
 
-const DeleteButton = () => {
-
-    const deletePost = () => {
-        console.log('delete post')
+    const handleDelete = (e) => {
+        if (e.target.id) {
+            deletePost(e.target.id) 
+        }
     }
     
     return (
-        <Button color='red' basic floated='right' icon='trash' onClick={deletePost} 
-        />
+        <button id={user_id} onClick={handleDelete} className="ui red basic icon right floated button" >
+            <i id={user_id} onClick={handleDelete} aria-hidden="true" className="trash icon"></i>
+        </button>
+
     )
 }
 
