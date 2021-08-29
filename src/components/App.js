@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 
-import Header from './Header'
 import Posts from './Posts'
 import Loading from './Loading'
 import SinglePostItem from './SinglePostItem'
+import MenuBar from './MenuBar'
 
 class App extends React.Component {
   state = {
@@ -44,7 +44,7 @@ class App extends React.Component {
     } else {
       return (
         <div className="App">
-          <Header goHome={this.goHome.bind(this)}/>
+          <MenuBar goHome={this.goHome.bind(this)}/>
           <Posts posts={posts} getSinglePostItem={this.getSinglePostItem.bind(this)} />
         </div>
       );

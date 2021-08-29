@@ -7,19 +7,25 @@
 } */
 
 .menu-container {
-    color: rgb(66, 66, 66);
-    background-color: #ccdbfd;  /* Blue */
-    padding: 20px 0;
-  }
-  
-  .home {
-    margin: auto;
-    width: 900px;
-    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
     font-size: 1.5em;
-    /* border: 1px solid red; */
-}
- .home:hover, .user-name:hover {
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    padding: 7px 0;
+    border-bottom: .5px groove #ffffff;
+  }
+
+  .user {
+    margin-left: auto;
+  }
+
+ .home:hover, .user:hover, .user-name:hover {
    cursor: pointer;
  }
 
@@ -32,7 +38,7 @@
     display: block !important;
     font-size: 3rem;
     text-align: center;
-    margin: 10px 0 0 0;
+    /* margin: 10px 0 0 0; */
     /* border: 1px solid blue; */
   }
   

@@ -1,12 +1,12 @@
 import React from 'react'
-import Header from './Header'
+import MenuBar from './MenuBar'
 import { Button, Card } from 'semantic-ui-react'
 
 const SinglePostItem = ({singlePostItem, goHome}) => {
 
     return (
         <div>
-            <Header goHome={goHome}/>
+            <MenuBar goHome={goHome}/>
             <Card>
                 <Card.Content>
                     <Card.Header>{singlePostItem[0].user_name}</Card.Header>
