@@ -3,7 +3,7 @@ import PostItem from './PostItem'
 import PostForm from './PostForm'
 import {Grid} from 'semantic-ui-react'
 
-const Posts = ({posts, getSinglePostItem, userInputText, recordUserInput, submitUserInput, deletePost}) => {
+const Posts = ({posts, getSinglePostItem, userInputText, recordUserInput, submitUserInput, deletePost, updateLikeCount, liked}) => {
     
     return (
         <Grid columns={3} className='post-container'>
@@ -18,7 +18,7 @@ const Posts = ({posts, getSinglePostItem, userInputText, recordUserInput, submit
             <Grid.Row>
                 {posts.map( post => (
                     <Grid.Column key={post.user_id}>
-                        <PostItem post={post} getSinglePostItem={getSinglePostItem} deletePost={deletePost}/>
+                        <PostItem post={post} getSinglePostItem={getSinglePostItem} deletePost={deletePost} updateLikeCount={updateLikeCount} liked={liked}/>
                     </Grid.Column>
                 ))}
             </Grid.Row>

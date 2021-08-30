@@ -83,3 +83,8 @@
   border: none;
   box-shadow: 0 0 2px 1px #d4d4d5,0 0 0 1px #d4d4d5;
 }
+
+/* .ui.teal.button:focus,
+.ui.teal.buttons .button:focus {
+  background-color: #00b5ad;
+} */

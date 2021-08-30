@@ -1,18 +1,16 @@
 import React from 'react'
 
-const LikeButton = ({like_count}) => {
+const LikeButton = ({user_id, like_count, updateLikeCount}) => {
 
-    const likePost = () => {
-        console.log('like post')
+    const likePost = (e) => {
+        updateLikeCount(e.target.id)
+        // liked = false;
     }
     
     return (
-        // <Button color='teal' basic content='' icon='heart' onClick={likePost} 
-        // label={{ basic: true, color: 'teal', pointing: 'left', content: like_count }}
-        // />
         <div className="ui labeled button">
-            <button onClick={likePost} className="ui teal basic button">
-                <i aria-hidden="true" className="heart icon"></i> 
+            <button className="ui teal basic button">
+                <i id={user_id} onClick={likePost} aria-hidden="true" className="heart icon"></i> 
             </button>
 
             <div className="ui teal left pointing basic label">{like_count}</div>

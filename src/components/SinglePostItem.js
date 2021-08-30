@@ -19,7 +19,6 @@ const SinglePostItem = ({singlePostItem, goHome}) => {
                 </Card.Content>
             </Card>
         </div>
-
     )
 }
 
