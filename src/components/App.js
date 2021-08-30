@@ -54,11 +54,14 @@ class App extends React.Component {
   // submit when enter key is hit
   async submitUserInput() {
     const posts = this.state.posts.slice() // make copy of posts array
-    const lastPost = {user_name: 'User', post_content: this.state.userInputText, like_count: 0}
-    await axios.post('http://localhost:4000/api/users', lastPost)
-      .then(res => this.setState({userInputText: '', posts: posts.concat(res.data)}))
-      .catch(err => console.log(err))
-
+    if(JSON.stringify(this.state.userInputText) === JSON.stringify('')) {
+      alert('Can\'t be empty')
+    } else {
+      const lastPost = {user_name: 'User', post_content: this.state.userInputText, like_count: 0}
+      await axios.post('http://localhost:4000/api/users', lastPost)
+        .then(res => this.setState({userInputText: '', posts: posts.concat(res.data)}))
+        .catch(err => console.log(err))
+    }
   }
   /*************************************** ADD NEW POST ******************************************/
 
@@ -105,7 +108,7 @@ class App extends React.Component {
 
 
   render() {
-    const {loading, posts, singlePostItem, userInputText, liked} = this.state
+    const {loading, posts, singlePostItem, userInputText} = this.state
 
     if (singlePostItem) {
       return <SinglePostItem singlePostItem={singlePostItem} goHome={this.goHome.bind(this)} updateLikeCount={this.updateLikeCount.bind(this)}/>
