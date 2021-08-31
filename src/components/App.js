@@ -96,8 +96,12 @@ class App extends React.Component {
     await axios.patch(`http://localhost:4000/api/users/${id}`, updateData)
       // .then(resp => this.setState({liked: false}))
 
+    // const current = this.state.posts
+    // update(current, )
+
     // get all again ? 
-    this.componentDidMount()
+    // this.componentDidMount()
+
     // this.setState({liked: false})
   }
   /*************************************** UPDATE LIKE COUNT ******************************************/
