@@ -18,9 +18,9 @@ class App extends React.Component {
   
   async componentDidMount() {
     this.setState({loading: true})
-    await axios.get('http://localhost:4000/api/users')
-      .then(res => this.setState({loading: false, posts: res.data}))
-      .catch(err => console.log(err))
+    const res = await axios.get('http://localhost:4000/api/users')
+    this.setState({posts: res.data})
+    this.setState({loading: false})
   }
 
 
@@ -28,15 +28,14 @@ class App extends React.Component {
   // get single post item
   async getSinglePostItem(id) {
     this.setState({loading: true})
-    await axios.get(`http://localhost:4000/api/users/${id}`)
-      .then(res => this.setState({singlePostItem: res.data, loading: false}))
-      .catch(err => console.log(err))
+    const res = await axios.get(`http://localhost:4000/api/users/${id}`)
+    this.setState({singlePostItem: res.data})
+    this.setState({loading: false})
   }
 
   // event handler on home btn
   goHome() {
     this.setState({singlePostItem: null})
-    this.setState({loading: false})
   }
   /*************************************** SINGLE POST ITEM ***************************************/
 
@@ -58,9 +57,8 @@ class App extends React.Component {
       alert('Can\'t be empty')
     } else {
       const lastPost = {user_name: 'User', post_content: this.state.userInputText, like_count: 0}
-      await axios.post('http://localhost:4000/api/users', lastPost)
-        .then(res => this.setState({userInputText: '', posts: posts.concat(res.data)}))
-        .catch(err => console.log(err))
+      const res = await axios.post('http://localhost:4000/api/users', lastPost)
+      this.setState({userInputText: '', posts: posts.concat(res.data)})
     }
   }
   /*************************************** ADD NEW POST ******************************************/
@@ -71,10 +69,13 @@ class App extends React.Component {
 
   /*************************************** DELETE POST ******************************************/
   async deletePost(id) {
-    this.setState({loading: true})
-    await axios.delete(`http://localhost:4000/api/users/${id}`)
-      .catch(err => console.log(err))
-    this.componentDidMount()
+    // await axios.delete(`http://localhost:4000/api/users/${id}`)
+    // const res = await axios.get('http://localhost:4000/api/users/')
+    // this.setState({posts: [...res.data]})
+
+    // USE filter method or spread operator to update state
+    // Filter UI data
+    this.setState({posts: this.state.posts.filter(ele =>  ele.user_id !== id)})
   }
   /*************************************** DELETE POST ******************************************/
 
@@ -86,8 +87,7 @@ class App extends React.Component {
   async updateLikeCount(id) {
     // get data from single post
     const res = await axios.get(`http://localhost:4000/api/users/${id}`)
-      .catch(err => console.log(err))
-
+      
     let {user_name, post_content, like_count} = res.data[0]
     like_count++
     // this.setState({liked: true})
@@ -95,7 +95,6 @@ class App extends React.Component {
 
     await axios.patch(`http://localhost:4000/api/users/${id}`, updateData)
       // .then(resp => this.setState({liked: false}))
-      .catch(err => console.log(err))
 
     // get all again ? 
     this.componentDidMount()

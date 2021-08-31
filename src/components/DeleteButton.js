@@ -4,7 +4,7 @@ const DeleteButton = ({user_id, deletePost}) => {
 
     const handleDelete = (e) => {
         if (e.target.id) {
-            deletePost(e.target.id) 
+            deletePost(parseInt(e.target.id)) 
         }
     }
     
