@@ -12,7 +12,6 @@ class App extends React.Component {
     posts: [],
     singlePostItem: null,
     userInputText: '',
-    // liked: false
   }
 
   
@@ -55,6 +54,7 @@ class App extends React.Component {
     const posts = this.state.posts.slice() // make copy of posts array
     if(JSON.stringify(this.state.userInputText) === JSON.stringify('')) {
       alert('Can\'t be empty')
+      return
     } else {
       const lastPost = {user_name: 'User', post_content: this.state.userInputText, like_count: 0}
       const res = await axios.post('http://localhost:4000/api/users', lastPost)
@@ -69,13 +69,14 @@ class App extends React.Component {
 
   /*************************************** DELETE POST ******************************************/
   async deletePost(id) {
-    // await axios.delete(`http://localhost:4000/api/users/${id}`)
-    // const res = await axios.get('http://localhost:4000/api/users/')
-    // this.setState({posts: [...res.data]})
+    // Delete in DB
+    await axios.delete(`http://localhost:4000/api/users/${id}`)
+    const res = await axios.get('http://localhost:4000/api/users/')
+    this.setState({posts: [...res.data]})
 
     // USE filter method or spread operator to update state
     // Filter UI data
-    this.setState({posts: this.state.posts.filter(ele =>  ele.user_id !== id)})
+    // this.setState({posts: this.state.posts.filter(ele =>  ele.user_id !== id)})
   }
   /*************************************** DELETE POST ******************************************/
 
@@ -84,28 +85,31 @@ class App extends React.Component {
 
 
   /*************************************** UPDATE LIKE COUNT ******************************************/
-  async updateLikeCount(id) {
-    // get data from single post
-    const res = await axios.get(`http://localhost:4000/api/users/${id}`)
-      
-    let {user_name, post_content, like_count} = res.data[0]
-    like_count++
-    // this.setState({liked: true})
-    const updateData = {user_name: user_name, post_content: post_content, like_count: like_count}
+  async updateLikeCount(obj) {
+    const {posts} = this.state
 
-    await axios.patch(`http://localhost:4000/api/users/${id}`, updateData)
-      // .then(resp => this.setState({liked: false}))
+    const updatedData = posts.map(post => {
+      if (post.user_id === parseInt(obj.user_id)) {
+        post.like_count = obj.like_count
+      }
+      return post
+    })
 
-    // const current = this.state.posts
-    // update(current, )
+    this.setState({posts: updatedData})
 
-    // get all again ? 
-    // this.componentDidMount()
+    // UPDATE TO DB
+    const res = await axios.get(`http://localhost:4000/api/users/${obj.user_id}`)
 
-    // this.setState({liked: false})
+    let newUpdate = {
+      user_name: res.data[0].user_name,
+      post_content: res.data[0].post_content,
+      like_count: obj.like_count
+    }
+
+    await axios.patch(`http://localhost:4000/api/users/${obj.user_id}`, newUpdate)
+
   }
   /*************************************** UPDATE LIKE COUNT ******************************************/
-
 
 
 
